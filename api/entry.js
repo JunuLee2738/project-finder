@@ -43,11 +43,17 @@ module.exports = async (req, res) => {
       body: JSON.stringify(body)
     });
 
+    const text = await response.text();
+
     if (!response.ok) {
-      return res.status(500).json({ error: "Entry server error", status: response.status });
+      return res.status(response.status).json({
+        error: "Entry server error",
+        status: response.status,
+        message: text
+      });
     }
 
-    const data = await response.json();
+    const data = JSON.parse(text);
     res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(200).json(data);
   } catch (err) {
