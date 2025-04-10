@@ -199,7 +199,7 @@ module.exports = async (req, res) => {
 
     response.on("end", () => {
       try {
-        const parsed = JSON.parse(data);
+        const parsed = JSON.parse(requestBody);
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.status(200).json(parsed);
       } catch (err) {
@@ -212,6 +212,6 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: "Request error", detail: err.message });
   });
 
-  request.write(body);
+  request.write(requestBody);
   request.end();
 };
