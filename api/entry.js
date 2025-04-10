@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: "Missing project ID" });
   }
 
-const body = {
+  const body = {
     query: `
 
     query SELECT_PROJECT($id: ID! $groupId: ID) {
@@ -178,14 +178,17 @@ const body = {
      }`,
     variables: { id }
   };
-  const requestBody = JSON.strinfify(body)
+
+  const requestBody = JSON.stringify(body);
+
   const options = {
     hostname: "playentry.org",
     path: "/graphql/SELECT_PROJECT",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Content-Length": Buffer.byteLength(requestBody)
+      "Content-Length": Buffer.byteLength(requestBody),
+      "Origin": "https://playentry.org"
     }
   };
 
