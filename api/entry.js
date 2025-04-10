@@ -182,7 +182,7 @@ module.exports = async (req, res) => {
 //      "Content-Length": Buffer.byteLength(requestBody),
   const options = {
     hostname: "playentry.org",
-    path: "/graphql/SELECT_PROJECT",
+    path: "playentry.org/graphql/SELECT_PROJECT",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
