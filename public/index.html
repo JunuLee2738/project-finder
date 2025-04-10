@@ -1,17 +1,17 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>엔트리 작품 다운로드기</title>
+  <meta charset="UTF-8">
+  <title>Entry .ent 다운로드기</title>
   <script src="https://rawcdn.githack.com/ankitrohatgi/tarballjs/refs/heads/master/tarball.js"></script>
 </head>
 <body>
-  <h2>엔트리 작품 .ent 파일 다운로드</h2>
-  <input type="text" id="projectId" placeholder="작품 ID를 입력하세요" />
+  <h2>엔트리 작품 .ent 다운로드</h2>
+  <input id="projectId" placeholder="작품 ID 입력" />
   <button onclick="downloadEnt()">다운로드</button>
   <br><br>
   <progress value="0" max="1"></progress>
-  <br>
   <span></span>
 
   <script>
@@ -19,71 +19,45 @@
       const id = document.getElementById("projectId").value.trim();
       const span = document.querySelector("span");
       const progress = document.querySelector("progress");
-
+  
       if (!id) {
-        alert("작품 ID를 입력해주세요!");
+        alert("작품 ID를 입력하세요!");
         return;
       }
-
+  
       span.innerText = "작품 불러오는 중...";
       progress.value = 0.2;
-
-      const res = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          operationName: "selectProject",
-          variables: { id },
-          query: `
-            query selectProject($id: ID!) {
-              project(id: $id) {
-                id
-                name
-                variables
-                messages
-                objects
-                scenes
-                speed
-                engineType
-                description
-                hardware
-                timeTable
-              }
-            }
-          `,
-        }),
-      });
-
+  
+      const res = await fetch(`/api/entry?id=${id}`);
       const requestData = await res.json();
-
+  
       if (!requestData?.data?.project) {
-        span.innerText = "❌ 작품을 불러올 수 없습니다.";
+        span.innerText = "❌ 프로젝트를 찾을 수 없습니다.";
         return;
       }
-
+  
       progress.value = 0.6;
       span.innerText = "파일 생성 중...";
-
-      // 프로젝트 데이터 → JSON 파일로 변환
+  
       const file = new File(
         [new Blob([JSON.stringify(requestData.data)])],
         "temp/project.json"
       );
-
-      // Tar 파일 생성 및 다운로드
+  
       const tar = new tarball.TarWriter();
       tar.addFile("temp/project.json", file);
-
+  
+      const projectName = requestData.data.project.name || "project";
+      const safeName = projectName.replace(/[\\/:*?"<>|]+/g, "_");
+  
       progress.value = 0.9;
-      span.innerText = "다운 준비 중...\n";
-
-      tar.download("project.ent");
-
+      span.innerText = `📦 ${safeName}.ent 다운로드 중...`;
+  
+      tar.download(`${safeName}.ent`);
+  
       progress.value = 1;
-      span.innerText = "✅ 다운로드 완료!";
+      span.innerText = "다운로드 완료!";
     }
-  </script>
+  </script>  
 </body>
 </html>
