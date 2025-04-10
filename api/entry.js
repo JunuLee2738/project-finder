@@ -1,44 +1,44 @@
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 
-async function getXToken(username, password) {
-  const loginBody = {
-    query: `
-      mutation signInByUsername($username: String!, $password: String!) {
-        signInByUsername(username: $username, password: $password) {
-          id
-          nickname
-          token
-        }
-      }
-    `,
-    variables: { username, password }
-  };
+// async function getXToken(username, password) {
+//   const loginBody = {
+//     query: `
+//       mutation signInByUsername($username: String!, $password: String!) {
+//         signInByUsername(username: $username, password: $password) {
+//           id
+//           nickname
+//           token
+//         }
+//       }
+//     `,
+//     variables: { username, password }
+//   };
 
-  const response = await fetch("https://playentry.org/graphql/SIGNIN_BY_USERNAME", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Origin": "https://playentry.org",
-      "Referer": "https://playentry.org/signin"
-    },
-    body: JSON.stringify(loginBody)
-  });
+//   const response = await fetch("https://playentry.org/graphql/SIGNIN_BY_USERNAME", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Origin": "https://playentry.org",
+//       "Referer": "https://playentry.org/signin"
+//     },
+//     body: JSON.stringify(loginBody)
+//   });
 
-  const result = await response.json();
-  return result?.data?.signInByUsername?.token || null;
-}
+//   const result = await response.json();
+//   return result?.data?.signInByUsername?.token || null;
+// }
 
 module.exports = async (req, res) => {
-  const { id, username, password } = req.query;
+  // const { id, username, password } = req.query;
 
-  if (!id || !username || !password) {
-    return res.status(400).json({ error: "Missing project ID, username or password" });
-  }
+  // if (!id || !username || !password) {
+  //   return res.status(400).json({ error: "Missing project ID, username or password" });
+  // }
 
-  const xToken = await getXToken(username, password);
-  if (!xToken) {
-    return res.status(401).json({ error: "Failed to retrieve x-token (invalid credentials?)" });
-  }
+  // const xToken = await getXToken(username, password);
+  // if (!xToken) {
+  //   return res.status(401).json({ error: "Failed to retrieve x-token (invalid credentials?)" });
+  // }
 
   const body = {
     query: `
@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
         "Content-Type": "application/json",
         "Origin": "https://playentry.org",
         "Referer": "https://playentry.org",
-        "x-token": xToken,
+        // "x-token": xToken,
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36"
       },
       body: JSON.stringify(body)
