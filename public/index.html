@@ -2,14 +2,72 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>엔트리 작품 찾기 및 다운로드</title>
+  <title>엔트리 작품 찾기 & 다운로드</title>
   <script src="https://rawcdn.githack.com/ankitrohatgi/tarballjs/refs/heads/master/tarball.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      color: #333;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #222;
+    }
+
+    input {
+      width: 300px;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    progress {
+      width: 320px;
+      height: 18px;
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    span {
+      display: block;
+      margin-top: 10px;
+      font-size: 15px;
+      color: #444;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <h2>엔트리 작품 찾기 및 다운로드</h2>
-  <input id="projectId" placeholder="작품 ID 입력" />
-  <button onclick="downloadEnt()">다운로드</button>
-  <br><br>
+  <h2>엔트리 작품 찾기 & 다운로드</h2>
+  <div>
+    <input id="projectId" placeholder="작품 ID 입력 (예: 67efc52b...)" />
+    <button onclick="downloadEnt()">다운로드</button>
+  </div>
   <progress value="0" max="1"></progress>
   <span></span>
 
@@ -18,45 +76,45 @@
       const id = document.getElementById("projectId").value.trim();
       const span = document.querySelector("span");
       const progress = document.querySelector("progress");
-  
+
       if (!id) {
         alert("작품 ID를 입력하세요");
         return;
       }
-  
+
       span.innerText = "작품 불러오는 중...";
       progress.value = 0.2;
-  
+
       const res = await fetch(`/api/entry?id=${id}`);
       const requestData = await res.json();
-  
+
       if (!requestData?.data?.project) {
         span.innerText = "프로젝트를 찾을 수 없습니다.";
         return;
       }
-  
+
       progress.value = 0.6;
       span.innerText = "파일 생성 중...";
-  
+
       const file = new File(
         [new Blob([JSON.stringify(requestData.data)])],
         "temp/project.json"
       );
-  
+
       const tar = new tarball.TarWriter();
       tar.addFile("temp/project.json", file);
-  
+
       const projectName = requestData.data.project.name || "project";
       const safeName = projectName.replace(/[\\/:*?"<>|]+/g, "_");
-  
+
       progress.value = 0.9;
       span.innerText = `${safeName}.ent 다운로드 중...`;
-  
+
       tar.download(`${safeName}.ent`);
-  
+
       progress.value = 1;
       span.innerText = "다운로드 완료!";
     }
-  </script>  
+  </script>
 </body>
 </html>
