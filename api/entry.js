@@ -186,7 +186,7 @@ module.exports = async (req, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Content-Length": Buffer.byteLength(requestBody),
+      "Content-Length": Buffer.byteLength(body),
       "Origin": "https://playentry.org"
     }
   };
@@ -213,6 +213,6 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: "Request error", detail: err.message });
   });
 
-  request.write(requestBody);
+  request.write(body);
   request.end();
 };
