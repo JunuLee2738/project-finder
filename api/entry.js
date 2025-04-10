@@ -9,7 +9,6 @@ module.exports = async (req, res) => {
 
   const body = {
     query: `
-
     query SELECT_PROJECT($id: ID! $groupId: ID) {
         project(id: $id, groupId: $groupId) {
             
