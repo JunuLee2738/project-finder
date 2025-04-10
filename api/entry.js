@@ -201,7 +201,7 @@ module.exports = async (req, res) => {
     response.on("end", () => {
       try {
         const parsed = JSON.parse(requestBody);
-        res.setHeader("Access-Control-Allow-Origin", "*");
+        //res.setHeader("Access-Control-Allow-Origin", "*");
         res.status(200).json(parsed);
       } catch (err) {
         res.status(500).json({ error: "JSON parse error", detail: err.message });
