@@ -85,7 +85,7 @@
       span.innerText = "작품 불러오는 중...";
       progress.value = 0.2;
 
-      const res = await fetch(`/api/entry?id=${id}`);
+      const res = await fetch(`/api/entry?id=${id}&username=junu3343&password=qpalzmwnsdn7912`);
       const requestData = await res.json();
 
       if (!requestData?.data?.objects) {
