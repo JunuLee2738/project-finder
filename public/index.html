@@ -1,13 +1,12 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Entry .ent 다운로드기</title>
+  <title>엔트리 작품 찾기 및 다운로드</title>
   <script src="https://rawcdn.githack.com/ankitrohatgi/tarballjs/refs/heads/master/tarball.js"></script>
 </head>
 <body>
-  <h2>엔트리 작품 .ent 다운로드</h2>
+  <h2>엔트리 작품 찾기 및 다운로드</h2>
   <input id="projectId" placeholder="작품 ID 입력" />
   <button onclick="downloadEnt()">다운로드</button>
   <br><br>
@@ -21,7 +20,7 @@
       const progress = document.querySelector("progress");
   
       if (!id) {
-        alert("작품 ID를 입력하세요!");
+        alert("작품 ID를 입력하세요");
         return;
       }
   
@@ -32,7 +31,7 @@
       const requestData = await res.json();
   
       if (!requestData?.data?.project) {
-        span.innerText = "❌ 프로젝트를 찾을 수 없습니다.";
+        span.innerText = "프로젝트를 찾을 수 없습니다.";
         return;
       }
   
@@ -51,7 +50,7 @@
       const safeName = projectName.replace(/[\\/:*?"<>|]+/g, "_");
   
       progress.value = 0.9;
-      span.innerText = `📦 ${safeName}.ent 다운로드 중...`;
+      span.innerText = `${safeName}.ent 다운로드 중...`;
   
       tar.download(`${safeName}.ent`);
   
