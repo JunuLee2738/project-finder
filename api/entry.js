@@ -179,14 +179,14 @@ module.exports = async (req, res) => {
   };
 
   const requestBody = JSON.stringify(body);
-//      "Content-Length": Buffer.byteLength(body),
+//      "Content-Length": Buffer.byteLength(requestBody),
   const options = {
     hostname: "playentry.org",
     path: "/graphql/SELECT_PROJECT",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Content-Length": Buffer.byteLength(body),
+      "Content-Length": Buffer.byteLength(requestBody),
       "Origin": "https://playentry.org"
     }
   };
