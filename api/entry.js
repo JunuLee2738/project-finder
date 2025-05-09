@@ -39,6 +39,9 @@ export default async function handler(req, res) {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Referer": "https://playentry.org/",
         "Origin": "https://playentry.org",
+        "x-client-type": "Client",
+        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzQ3OTk4OTQ1LCJpYXQiOjE3NDY3ODkzNDV9.LaRogyIot3TXCgzkLb14ecqK3vZE_wH_wZbGrbIv4Ow",
+        "csrf-token": "uvYDjrMW-csP1Y0Qh7cDdGzhVUMyqUBTStHo"
       },
       body: JSON.stringify({
         query,
