@@ -178,10 +178,13 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Referer": "https://playentry.org/",
+        "referer": "strict-origin-when-cross-origin",
         "Origin": "https://playentry.org",
+        "sec-fetch-mode": "cors",
         "x-client-type": "Client",
-        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzQ3OTk4OTQ1LCJpYXQiOjE3NDY3ODkzNDV9.LaRogyIot3TXCgzkLb14ecqK3vZE_wH_wZbGrbIv4Ow",
-        "csrf-token": "uvYDjrMW-csP1Y0Qh7cDdGzhVUMyqUBTStHo"
+        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzZDE5ODRhNjAwZDAwMjU1ZTc4YmMiLCJwcm9qZWN0SWQiOiI2ODQxMzhkOTYyYzM5NjgyODYyZDA0NWQiLCJwcm9qZWN0VXNlcklkIjoiNjU4M2QxOTg0YTYwMGQwMDI1NWU3OGJjIiwiaXNPd25lciI6dHJ1ZSwiaWF0IjoxNzQ5MTA1MDA0fQ.zDdtB44MBrKMoN8LPPYKpz6OkQuqMheGwyd2qhHfYNU",
+        "csrf-token": "uvYDjrMW-csP1Y0Qh7cDdGzhVUMyqUBTStHo",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
       },
       body: JSON.stringify({
         query,
