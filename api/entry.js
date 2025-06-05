@@ -193,7 +193,7 @@ export default async function handler(req, res) {
         },
       }),
     });
-
+    console.log(response)
     const data = await response.json();
     if (data.errors) {
       console.log(data.errors)
