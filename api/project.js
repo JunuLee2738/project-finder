@@ -517,7 +517,9 @@ export default async function handler(req, res) {
         "x-client-type": "Client",
         "Referer": "https://playentry.org/",
         "Origin": "https://playentry.org",
-        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzZDE5ODRhNjAwZDAwMjU1ZTc4YmMiLCJwcm9qZWN0SWQiOiI2ODQxMzhkOTYyYzM5NjgyODYyZDA0NWQiLCJwcm9qZWN0VXNlcklkIjoiNjU4M2QxOTg0YTYwMGQwMDI1NWU3OGJjIiwiaXNPd25lciI6dHJ1ZSwiaWF0IjoxNzQ5MTA1MDA0fQ.zDdtB44MBrKMoN8LPPYKpz6OkQuqMheGwyd2qhHfYNU"
+        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzZDE5ODRhNjAwZDAwMjU1ZTc4YmMiLCJwcm9qZWN0SWQiOiI2ODQxMzhkOTYyYzM5NjgyODYyZDA0NWQiLCJwcm9qZWN0VXNlcklkIjoiNjU4M2QxOTg0YTYwMGQwMDI1NWU3OGJjIiwiaXNPd25lciI6dHJ1ZSwiaWF0IjoxNzQ5MTA1MDA0fQ.zDdtB44MBrKMoN8LPPYKpz6OkQuqMheGwyd2qhHfYNU",
+        "remote-address": "110.93.151.161:443",
+        "csrf-token": "bbKReqAv-zWAlb1sExEpFRomuUOlyrU055gw",
       },
       body: JSON.stringify({
         query,
