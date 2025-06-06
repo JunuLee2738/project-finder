@@ -365,11 +365,13 @@ app.get('/api/project', async (req, res) => {
 
     const data = await response.json();
     if (data.errors) {
+      console.log(data.errors)
       res.status(400).json({ error: data.errors });
     } else {
       res.status(200).json(data);
     }
   } catch (err) {
+    console.log(err.message)
     res.status(500).json({ error: "서버 요청 실패", detail: err.message });
   }
 });
