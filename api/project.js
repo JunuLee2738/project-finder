@@ -510,7 +510,7 @@ export default async function handler(req, res) {
 
   try {
     const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token")
-    const csrf = csrf_response.json()
+    const csrf = await csrf_response.json()
     const response = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
       method: "POST",
       headers: {
