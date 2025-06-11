@@ -383,7 +383,7 @@
 // });
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://entry-project-finder.vercel.app/");
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -519,7 +519,7 @@ export default async function handler(req, res) {
         "x-client-type": "Client",
         "Referer": "https://playentry.org/",
         "Origin": `https://playentry.org/iframe/${id}`,
-        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzZDE5ODRhNjAwZDAwMjU1ZTc4YmMiLCJwcm9qZWN0SWQiOiI2N2RlOGMwYzI0ZGM4MzliYTZlMTYzNDUiLCJwcm9qZWN0VXNlcklkIjoiNjZiZWU2YzlhZjZhYzBhYjEyZGY2OTRmIiwiaXNPd25lciI6ZmFsc2UsImlhdCI6MTc0OTY0MTI0OX0.V3LsEFETSIhLubFZPKvp4oJ-KFEhS9vLxT6hG23lsZA",
+        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzUwODUxOTY3LCJpYXQiOjE3NDk2NDIzNjd9.v--0d3eclRCaDi9gQKjTet19FO9VPo5jxLuWqpFzYQQ",
         "remote-address": "110.93.151.161:443",
         "csrf-token": csrf,
         "mode": "cors",
