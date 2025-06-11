@@ -509,6 +509,8 @@ export default async function handler(req, res) {
   `;
 
   try {
+    const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token")
+    const csrf = csrf_response.json()
     const response = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
       method: "POST",
       headers: {
@@ -519,7 +521,7 @@ export default async function handler(req, res) {
         "Origin": `https://playentry.org/iframe/${id}`,
         "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTgzZDE5ODRhNjAwZDAwMjU1ZTc4YmMiLCJwcm9qZWN0SWQiOiI2N2RlOGMwYzI0ZGM4MzliYTZlMTYzNDUiLCJwcm9qZWN0VXNlcklkIjoiNjZiZWU2YzlhZjZhYzBhYjEyZGY2OTRmIiwiaXNPd25lciI6ZmFsc2UsImlhdCI6MTc0OTY0MTI0OX0.V3LsEFETSIhLubFZPKvp4oJ-KFEhS9vLxT6hG23lsZA",
         "remote-address": "110.93.151.161:443",
-        "csrf-token": "XTZbwBfa-tcqhjanOgJn6Zhapvz8VAosaKz8",
+        "csrf-token": csrf,
         "mode": "cors",
       },
       body: JSON.stringify({
