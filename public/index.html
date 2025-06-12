@@ -77,7 +77,7 @@ async function downloadEnt() {
   const id = document.getElementById("projectId").value.trim();
   const span = document.querySelector("span");
   const progress = document.querySelector("progress");
-  const csrf = document.getElementById("csrf-token");
+  const csrf = document.getElementById("csrf-token").value;
   if (!id) {
     alert("작품 ID를 입력하세요");
     return;
