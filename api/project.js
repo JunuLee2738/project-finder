@@ -394,7 +394,7 @@ export default async function handler(req, res) {
   res.setHeader("X-XSS-Protection", "0");
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "ALLOWALL");
-  res.setHeader("Referrer-Policy", "no-referrer-when-downgrade");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");//no-referrer-when-downgrade이었는데 엔트리 자체가 strict-origin-when-cross-origin로 사용하고 있어서 바꿈
   res.setHeader("Permissions-Policy", "geolocation=*; microphone=*; camera=*; fullscreen=*; payment=*; usb=*");
   res.setHeader("Strict-Transport-Security", "max-age=0");
   res.setHeader("Expect-CT", "max-age=0");
@@ -526,7 +526,7 @@ export default async function handler(req, res) {
         "x-client-type": "Client",
         "Referer": "https://playentry.org/",
         "Origin": `https://playentry.org/iframe/${id}`,
-        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzUwODUxOTY3LCJpYXQiOjE3NDk2NDIzNjd9.v--0d3eclRCaDi9gQKjTet19FO9VPo5jxLuWqpFzYQQ",
+        // "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzUwODUxOTY3LCJpYXQiOjE3NDk2NDIzNjd9.v--0d3eclRCaDi9gQKjTet19FO9VPo5jxLuWqpFzYQQ",
         "remote-address": "110.93.151.161:443",
         "csrf-token": csrf,
         "mode": "cors",
