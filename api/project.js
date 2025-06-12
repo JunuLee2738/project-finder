@@ -403,7 +403,7 @@ export default async function handler(req, res) {
   res.setHeader("Cross-Origin-Opener-Policy", "unsafe-none");
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   res.setHeader("Access-Control-Expose-Headers", "*");
-
+  res.removeHeader('X-Powered-By');
   const { id, csrfToken } = req.query;
 
   const query = `
