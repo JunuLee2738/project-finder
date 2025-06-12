@@ -383,7 +383,7 @@
 // });
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "https://entry-project-finder.vercel.app/");
+  res.setHeader("Access-Control-Allow-Origin", "*");//https://entry-project-finder.vercel.app/
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
