@@ -404,7 +404,7 @@ export default async function handler(req, res) {
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   res.setHeader("Access-Control-Expose-Headers", "*");
 
-  const { id } = req.query;
+  const { id, csrfToken } = req.query;
 
   const query = `
     query SELECT_PROJECT($id: ID!, $groupId: ID) {
@@ -509,8 +509,10 @@ export default async function handler(req, res) {
   `;
 
   try {
-    const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token")
-    const csrf = await csrf_response.json()
+    if (!csrfToken) {
+      const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token")
+      const csrf = await csrf_response.json()
+    }
     const response = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
       method: "POST",
       headers: {
