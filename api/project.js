@@ -594,7 +594,7 @@ export default async function handler(req, res) {
         "x-client-type": "Client",
         "Referer": `https://playentry.org/iframe/${id}`,
         "Origin": `https://playentry.org/`,
-        // "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzUwODUxOTY3LCJpYXQiOjE3NDk2NDIzNjd9.v--0d3eclRCaDi9gQKjTet19FO9VPo5jxLuWqpFzYQQ",
+        "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZG5vIjoiODRiODIwZDAtOWZjNC0xMWVlLTg5MjktMjQ2ZTk2NGNmMDRjIiwiZXhwIjoxNzUxMDgyOTc1LCJpYXQiOjE3NDk4NzMzNzV9.Mz4b7UKEGTQuwaZSSQdjMDEriZP506MDp5cajW9MdrE",
         "remote-address": "110.93.151.161:443",
         "csrf-token": csrf,
         // "mode": "cors",
