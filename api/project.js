@@ -579,6 +579,7 @@ export default async function handler(req, res) {
   try {
     let csrf = ""
     let tokenResponse
+    let x = ""
     // let isCsrfInQuery = false
     if (!csrfToken) {
       const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token")
