@@ -406,175 +406,120 @@ export default async function handler(req, res) {
   // res.removeHeader('X-Powered-By');
   const { id, csrfToken } = req.query;
 
-  const graphQLQuery = `
-
-    query SELECT_PROJECT($id: ID! $groupId: ID) {
-        project(id: $id, groupId: $groupId) {
-            
-    
-    id
-    name
-    user {
-        
-    id
-    nickname
-    profileImage {
-        
-    id
-    name
-    label {
-        
-    ko
-    en
-    ja
-    vn
-
-    }
-    filename
-    imageType
-    dimension {
-        
-    width
-    height
-
-    }
-    trimmed {
-        filename
-        width
-        height
-    }
-
-    }
-    status {
-        following
-        follower
-    }
-    description
-    role
-    mark {
-        
-    id
-    name
-    label {
-        
-    ko
-    en
-    ja
-    vn
-
-    }
-    filename
-    imageType
-    dimension {
-        
-    width
-    height
-
-    }
-    trimmed {
-        filename
-        width
-        height
-    }
- 
-    }
-
-    }
-    thumb
-    isopen
-    showComment
-    blamed
-    isPracticalCourse
-    category
-    categoryCode
-    created
-    updated
-    special
-    isForLecture
-    isForStudy
-    isForSubmit
-    hashId
-    complexity
-    staffPicked
-    ranked
-    visit
-    likeCnt
-    comment
-    favorite
-    shortenUrl
-    parent {
-        id
-        name
-        user {
-            id
-            nickname
-        }
-    }
-    description
-    description2
-    description3
-    hasRealTimeVariable
-    blockCategoryUsage
-    childCnt
-    commentGroup {
-        group
-        count
-    }
-    likeCntGroup {
-        group
-        count
-    }
-    visitGroup {
-        group
-        count
-    }
-    recentGroup {
-        group
-        count
-    }
-    published
-    isFirstPublish
-    tags
-
-    speed
-    objects
-    variables
-    submitId {
-        id
-    }
-    cloudVariable
-    messages
-    functions
-    tables
-    scenes
-    realTimeVariable {
-        
-    variableType
-    key
-    value
-    array {
-        key
-        data
-    }
-    minValue
-    maxValue
-    visible
-    x
-    y
-    width
-    height
-    object
-
-    }
-    learning
-    expansionBlocks
-    aiUtilizeBlocks
-    hardwareLiteBlocks
-    blockCategoryUsage
-
-        }
-     }
-  `;
+    const graphQLQuery = `
+      query FIND_USERSTATUS_BY_USERNAME($id: String) {
+          userstatus(id: $id) {
+              id
+              nickname
+              username
+              description
+              shortUrl
+              created
+              profileImage {
+                  id
+                  name
+                  label {
+                      ko
+                      en
+                      ja
+                      vn
+                  }
+                  filename
+                  imageType
+                  dimension {
+                      width
+                      height
+                  }
+                  trimmed {
+                      filename
+                      width
+                      height
+                  }
+              }
+              coverImage {
+                  id
+                  name
+                  label {
+                      ko
+                      en
+                      ja
+                      vn
+                  }
+                  filename
+                  imageType
+                  dimension {
+                      width
+                      height
+                  }
+                  trimmed {
+                      filename
+                      width
+                      height
+                  }
+              }
+              role
+              mark {
+                  id
+                  name
+                  label {
+                      ko
+                      en
+                      ja
+                      vn
+                  }
+                  filename
+                  imageType
+                  dimension {
+                      width
+                      height
+                  }
+                  trimmed {
+                      filename
+                      width
+                      height
+                  }
+              }
+              studentTerm
+              status {
+                  project
+                  projectAll
+                  study
+                  studyAll
+                  community {
+                      qna
+                      tips
+                      free
+                  }
+                  following
+                  follower
+                  bookmark {
+                      project
+                      study
+                      discuss
+                  }
+                  userStatus
+              }
+              representativeContestPrizes {
+                  id
+                  contest {
+                      name
+                      url
+                      enddate
+                  }
+                  badgeText
+                  prizeName
+                  prizeImageData {
+                      path
+                  }
+                  target
+                  targetSubject
+                  targetType
+                  created
+                  category
+              }
+          }
+      }
+    `;
 
   try {
     let csrf = ""
@@ -619,7 +564,7 @@ export default async function handler(req, res) {
       query: graphQLQuery,
       variables: { id: id }
     };
-    fetch("https://playentry.org/graphql/SELECT_PROJECT", {
+    fetch("https://playentry.org/graphql/FIND_USERSTATUS_BY_USERNAME", {
       headers: {
         "accept": "*/*",
         "accept-language": "en-US,en;q=0.9,ko;q=0.8",
@@ -635,7 +580,7 @@ export default async function handler(req, res) {
         "x-client-type": "Client",
         "x-token": x,
       },
-      referrer: `https://playentry.org/iframe/${id}`,
+      referrer: `https://playentry.org/profile/${id}/project?sort=created&term=all&isOpen=all`,
       referrerPolicy: "strict-origin-when-cross-origin",
       body: JSON.stringify(requestBody),
       method: "POST",
