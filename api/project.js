@@ -383,27 +383,27 @@
 // });
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");//https://entry-project-finder.vercel.app/
-  res.setHeader("Access-Control-Allow-Methods", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+  // res.setHeader("Access-Control-Allow-Origin", "*");//https://entry-project-finder.vercel.app/
+  // res.setHeader("Access-Control-Allow-Methods", "*");
+  // res.setHeader("Access-Control-Allow-Headers", "*");
+  // res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  res.setHeader("Content-Security-Policy", "");
-  res.setHeader("X-Content-Security-Policy", "");
-  res.setHeader("X-WebKit-CSP", "");
-  res.setHeader("X-XSS-Protection", "0");
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("X-Frame-Options", "ALLOWALL");
-  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");//no-referrer-when-downgrade이었는데 엔트리 자체가 strict-origin-when-cross-origin로 사용하고 있어서 바꿈
-  res.setHeader("Permissions-Policy", "geolocation=*; microphone=*; camera=*; fullscreen=*; payment=*; usb=*");
-  res.setHeader("Strict-Transport-Security", "max-age=0");
-  res.setHeader("Expect-CT", "max-age=0");
-  res.setHeader("Cache-Control", "no-store");
-  res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");
-  res.setHeader("Cross-Origin-Opener-Policy", "unsafe-none");
-  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
-  res.setHeader("Access-Control-Expose-Headers", "*");
-  res.removeHeader('X-Powered-By');
+  // res.setHeader("Content-Security-Policy", "");
+  // res.setHeader("X-Content-Security-Policy", "");
+  // res.setHeader("X-WebKit-CSP", "");
+  // res.setHeader("X-XSS-Protection", "0");
+  // res.setHeader("X-Content-Type-Options", "nosniff");
+  // res.setHeader("X-Frame-Options", "ALLOWALL");
+  // res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");//no-referrer-when-downgrade이었는데 엔트리 자체가 strict-origin-when-cross-origin로 사용하고 있어서 바꿈
+  // res.setHeader("Permissions-Policy", "geolocation=*; microphone=*; camera=*; fullscreen=*; payment=*; usb=*");
+  // res.setHeader("Strict-Transport-Security", "max-age=0");
+  // res.setHeader("Expect-CT", "max-age=0");
+  // res.setHeader("Cache-Control", "no-store");
+  // res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");
+  // res.setHeader("Cross-Origin-Opener-Policy", "unsafe-none");
+  // res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  // res.setHeader("Access-Control-Expose-Headers", "*");
+  // res.removeHeader('X-Powered-By');
   const { id, csrfToken } = req.query;
 
   const graphQLQuery = `
