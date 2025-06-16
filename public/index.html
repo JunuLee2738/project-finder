@@ -85,75 +85,78 @@ async function downloadEnt() {
 
   span.innerText = "작품 불러오는 중...";
   progress.value = 0.2;
-
   const res = await fetch(`/api/project?id=${id}&csrfToken=${csrf}`);
   const requestData = await res.json();
-
-  if (!requestData?.data?.project) {
-    span.innerText = "프로젝트를 찾을 수 없습니다.";
-    return;
-  }
-
-  progress.value = 0.5;
-  span.innerText = "파일 생성 중...";
-
-  const files = {
-    "project.json": requestData.data.project,
-    "object.json": requestData.data.objects,
-    "scene.json": requestData.data.scenes,
-    "function.json": requestData.data.functions,
-    "message.json": requestData.data.messages,
-    "variable.json": requestData.data.variables,
-    "cloudvariable.json": requestData.data.cloudVariable,
-    "realtimevariable.json": requestData.data.realTimeVariable,
-    "table.json": requestData.data.tables,
-  };
-
-  const tar = new tarball.TarWriter();
-
-  for (const [filename, content] of Object.entries(files)) {
-    if (!content || JSON.stringify(content) === "{}" || JSON.stringify(content) === "[]") continue;
-
-    const blob = new Blob([JSON.stringify(content, null, 2)], { type: "application/json" });
-    const file = new File([blob], filename);
-    tar.addFile(filename, file);
-  }
-
-  const projectName = requestData.data.project.name || "project";
-  const safeName = projectName.replace(/[\/:*?"<>|]+/g, "_");
-
-  progress.value = 0.9;
-  span.innerText = `${safeName}.ent 다운로드 중...`;
-  tar.download(`${safeName}.ent`);
-
   progress.value = 1;
-  span.innerText = "다운로드 완료!";
+  span.innerText = "완료";
+  const p = document.createElement("p");
+  p.textContent = requestData;
+  documemt.body.appendchild(p)
+//   if (!requestData?.data?.project) {
+//     span.innerText = "프로젝트를 찾을 수 없습니다.";
+//     return;
+//   }
 
-  const container = document.createElement("div");
-  container.style.marginTop = "30px";
-  container.style.maxWidth = "800px";
+//   progress.value = 0.5;
+//   span.innerText = "파일 생성 중...";
 
-  for (const [name, content] of Object.entries(files)) {
-    const pretty = JSON.stringify(content, null, 2);
-    if (!content || pretty === "{}" || pretty === "[]") continue;
+//   const files = {
+//     "project.json": requestData.data.project,
+//     "object.json": requestData.data.objects,
+//     "scene.json": requestData.data.scenes,
+//     "function.json": requestData.data.functions,
+//     "message.json": requestData.data.messages,
+//     "variable.json": requestData.data.variables,
+//     "cloudvariable.json": requestData.data.cloudVariable,
+//     "realtimevariable.json": requestData.data.realTimeVariable,
+//     "table.json": requestData.data.tables,
+//   };
 
-    const title = document.createElement("h3");
-    title.innerText = name;
-    title.style.marginTop = "20px";
-    container.appendChild(title);
+//   const tar = new tarball.TarWriter();
 
-    const pre = document.createElement("pre");
-    pre.style.background = "#eee";
-    pre.style.padding = "10px";
-    pre.style.borderRadius = "8px";
-    pre.style.overflowX = "auto";
-    pre.style.whiteSpace = "pre-wrap";
-    pre.innerText = pretty;
-    container.appendChild(pre);
-  }
+//   for (const [filename, content] of Object.entries(files)) {
+//     if (!content || JSON.stringify(content) === "{}" || JSON.stringify(content) === "[]") continue;
 
-  document.body.appendChild(container);
-}
+//     const blob = new Blob([JSON.stringify(content, null, 2)], { type: "application/json" });
+//     const file = new File([blob], filename);
+//     tar.addFile(filename, file);
+//   }
+
+//   const projectName = requestData.data.project.name || "project";
+//   const safeName = projectName.replace(/[\/:*?"<>|]+/g, "_");
+
+//   progress.value = 0.9;
+//   span.innerText = `${safeName}.ent 다운로드 중...`;
+//   tar.download(`${safeName}.ent`);
+
+//   progress.value = 1;
+//   span.innerText = "다운로드 완료!";
+
+//   const container = document.createElement("div");
+//   container.style.marginTop = "30px";
+//   container.style.maxWidth = "800px";
+
+//   for (const [name, content] of Object.entries(files)) {
+//     const pretty = JSON.stringify(content, null, 2);
+//     if (!content || pretty === "{}" || pretty === "[]") continue;
+
+//     const title = document.createElement("h3");
+//     title.innerText = name;
+//     title.style.marginTop = "20px";
+//     container.appendChild(title);
+
+//     const pre = document.createElement("pre");
+//     pre.style.background = "#eee";
+//     pre.style.padding = "10px";
+//     pre.style.borderRadius = "8px";
+//     pre.style.overflowX = "auto";
+//     pre.style.whiteSpace = "pre-wrap";
+//     pre.innerText = pretty;
+//     container.appendChild(pre);
+//   }
+
+//   document.body.appendChild(container);
+// }
   </script>
 </body>
 </html>
