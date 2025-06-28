@@ -591,7 +591,7 @@ export default async function handler(req, res) {
         "method": "POST",
         "mode": "cors",
         "credentials": "include",
-        // "referrer": "https://playentry.org/",
+        "referrer": "https://playentry.org/",
         "origin": "https://playentry.org",
         "referrerPolicy": "strict-origin-when-cross-origin",
     });
