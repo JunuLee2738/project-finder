@@ -523,18 +523,18 @@ export default async function handler(req, res) {
 
   try {
     let csrf = ""
-    let tokenResponse
-    let x = ""
+    let tokenResponse;
+    // let x = ""
     // let isCsrfInQuery = false
-    if (!csrfToken) {
+    // if (!csrfToken) {
       const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token")
       tokenResponse = await csrf_response.json()
       csrf = tokenResponse.csrf_token
-      x = tokenResponse.x_token
-    } else {
+      // x = tokenResponse.x_token
+    // } else {
       // isCsrfInQuery = true
-      csrf = csrfToken
-    }
+      // csrf = csrfToken
+    // }
     console.log(csrf);
     // const response = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
     //   method: "POST",
