@@ -560,51 +560,82 @@ export default async function handler(req, res) {
     //     variables: { id }
     //   })
     // });
-    const requestBody = {
-      query: graphQLQuery,
-      variables: { id: id }
-    };
-    fetch("https://playentry.org/graphql/FIND_USERSTATUS_BY_USERNAME", {
-      headers: {
-        "accept": "*/*",
-        "accept-language": "en-US,en;q=0.9,ko;q=0.8",
-        "content-type": "application/json",
-        "csrf-token": csrf,
-        "priority": "u=1, i",
-        "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": "\"Linux\"",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "x-client-type": "Client",
-        "x-token": x,
-      },
-      referrer: `https://playentry.org/profile/${id}/project?sort=created&term=all&isOpen=all`,
-      referrerPolicy: "strict-origin-when-cross-origin",
-      body: JSON.stringify(requestBody),
-      method: "POST",
-      mode: "cors",
-      credentials: "include"
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.errors) {
-          console.log(data.errors)
-          res.status(400).json({ error: data.errors });
-        } else {
-          res.status(200).json(data);
-        }
-      })
+    // const requestBody = {
+    //   query: graphQLQuery,
+    //   variables: { id: id }
+    // };
+    const response = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
+        headers: {
+            "accept": "*/*",
+            "accept-language": "ja,en-US;q=0.9,en;q=0.8,ko;q=0.7",
+            "content-type": "application/json",
+            "csrf-token": csrf,
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-client-type": "Client",
+            //"x-token": xToken
+        },
+        body: JSON.stringify({
+            query: `\n    query SELECT_PROJECT($id: ID! $groupId: ID) {\n        project(id: $id, groupId: $groupId) {\n            \n    \n    id\n    name\n    user {\n        \n    id\n    nickname\n    profileImage {\n        \n    id\n    name\n    label {\n        \n    ko\n    en\n    ja\n    vn\n\n    }\n    filename\n    imageType\n    dimension {\n        \n    width\n    height\n\n    }\n    trimmed {\n        filename\n        width\n        height\n    }\n\n    }\n    status {\n        following\n        follower\n    }\n    description\n    role\n    mark {\n        \n    id\n    name\n    label {\n        \n    ko\n    en\n    ja\n    vn\n\n    }\n    filename\n    imageType\n    dimension {\n        \n    width\n    height\n\n    }\n    trimmed {\n        filename\n        width\n        height\n    }\n \n    }\n\n    }\n    thumb\n    isopen\n    showComment\n    blamed\n    isPracticalCourse\n    category\n    categoryCode\n    created\n    updated\n    special\n    isForLecture\n    isForStudy\n    isForSubmit\n    hashId\n    complexity\n    staffPicked\n    ranked\n    visit\n    likeCnt\n    comment\n    favorite\n    shortenUrl\n    parent {\n        id\n        name\n        user {\n            id\n            nickname\n        }\n    }\n    description\n    description2\n    description3\n    hasRealTimeVariable\n    blockCategoryUsage\n    childCnt\n    commentGroup {\n        group\n        count\n    }\n    likeCntGroup {\n        group\n        count\n    }\n    visitGroup {\n        group\n        count\n    }\n    recentGroup {\n        group\n        count\n    }\n    published\n    isFirstPublish\n    tags\n\n    speed\n    objects\n    variables\n    submitId {\n        id\n    }\n    cloudVariable\n    messages\n    functions\n    tables\n    scenes\n    realTimeVariable {\n        \n    variableType\n    key\n    value\n    array {\n        key\n        data\n    }\n    minValue\n    maxValue\n    visible\n    x\n    y\n    width\n    height\n    object\n\n    }\n    learning\n    expansionBlocks\n    aiUtilizeBlocks\n    hardwareLiteBlocks\n    blockCategoryUsage\n\n        }\n     }\n`,
+            variables: {
+                id: id
+            }
+        }),
+        "method": "POST",
+        "mode": "cors",
+        "credentials": "include",
+        // "referrer": "https://playentry.org/",
+        "origin": "https://playentry.org",
+        "referrerPolicy": "strict-origin-when-cross-origin",
+    });
+
+    const data = await response.json();
+    // fetch("https://playentry.org/graphql/FIND_USERSTATUS_BY_USERNAME", {
+    //   headers: {
+    //     "accept": "*/*",
+    //     "accept-language": "en-US,en;q=0.9,ko;q=0.8",
+    //     "content-type": "application/json",
+    //     "csrf-token": csrf,
+    //     "priority": "u=1, i",
+    //     "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+    //     "sec-ch-ua-mobile": "?0",
+    //     "sec-ch-ua-platform": "\"Linux\"",
+    //     "sec-fetch-dest": "empty",
+    //     "sec-fetch-mode": "cors",
+    //     "sec-fetch-site": "same-origin",
+    //     "x-client-type": "Client",
+    //     "x-token": x,
+    //   },
+    //   referrer: `https://playentry.org/profile/${id}/project?sort=created&term=all&isOpen=all`,
+    //   referrerPolicy: "strict-origin-when-cross-origin",
+    //   body: JSON.stringify(requestBody),
+    //   method: "POST",
+    //   mode: "cors",
+    //   credentials: "include"
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     if (data.errors) {
+    //       console.log(data.errors)
+    //       res.status(400).json({ error: data.errors });
+    //     } else {
+    //       res.status(200).json(data);
+    //     }
+    //   })
 
     // const data = await response.json();
     // console.log(data)
-    // if (data.errors) {
-    //   console.log(data.errors)
-    //   res.status(400).json({ error: data.errors });
-    // } else {
-    //   res.status(200).json(data);
-    // }
+    if (data.errors) {
+      console.log(data.errors);
+      res.status(400).json({ error: data.errors });
+    } else {
+      res.status(200).json(data);
+    }
   } catch (err) {
     console.log(err.message)
     res.status(500).json({ error: "서버 요청 실패", detail: err.message });
