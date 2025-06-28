@@ -535,6 +535,7 @@ export default async function handler(req, res) {
       // isCsrfInQuery = true
       csrf = csrfToken
     }
+    console.log(csrf);
     // const response = await fetch("https://playentry.org/graphql/SELECT_PROJECT", {
     //   method: "POST",
     //   headers: {
