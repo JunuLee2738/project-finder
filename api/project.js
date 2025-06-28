@@ -580,6 +580,7 @@ export default async function handler(req, res) {
             "sec-fetch-site": "same-origin",
             "x-client-type": "Client",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+            "remote-address": "110.93.151.161:443",
             //"x-token": xToken
         },
         body: JSON.stringify({
@@ -592,7 +593,7 @@ export default async function handler(req, res) {
         "mode": "cors",
         "credentials": "include",
         "referrer": "https://playentry.org/",
-        "origin": "https://playentry.org",
+        "origin": "https://playentry.org/",
         "referrerPolicy": "strict-origin-when-cross-origin",
     });
 
