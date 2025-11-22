@@ -658,10 +658,13 @@ export default async function handler(req, res) {
 
   try {
     // CSRF Token fetch
-    const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token");
-    const tokenResponse = await csrf_response.json();
-    const csrf = tokenResponse.csrf_token;
-
+    if (!csrfToken) {
+      const csrf_response = await fetch("https://csrf-token-api.onrender.com/get-csrf-token");
+      const tokenResponse = await csrf_response.json();
+      const csrf = tokenResponse.csrf_token;
+    } else {
+      csrf = csrfToken;
+    }
     const response = await fetch(proxy + targetUrl, {
       method: "POST",
       headers: {
