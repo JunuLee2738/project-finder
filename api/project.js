@@ -807,6 +807,6 @@ export default async function handler(req, res) {
 
   } catch (err) {
     console.log(err.message);
-    res.status(500).json({ error: "서버 요청 실패", detail: err.message });
+    res.status(500).json({ error: "서버 요청 실패", detail: err.message, response: data });
   }
 }
