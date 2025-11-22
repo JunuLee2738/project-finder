@@ -407,118 +407,118 @@
 //   const { id, csrfToken } = req.query;
 
 //     const graphQLQuery = `
-//       query FIND_USERSTATUS_BY_USERNAME($id: String) {
-//           userstatus(id: $id) {
-//               id
-//               nickname
-//               username
-//               description
-//               shortUrl
-//               created
-//               profileImage {
-//                   id
-//                   name
-//                   label {
-//                       ko
-//                       en
-//                       ja
-//                       vn
-//                   }
-//                   filename
-//                   imageType
-//                   dimension {
-//                       width
-//                       height
-//                   }
-//                   trimmed {
-//                       filename
-//                       width
-//                       height
-//                   }
-//               }
-//               coverImage {
-//                   id
-//                   name
-//                   label {
-//                       ko
-//                       en
-//                       ja
-//                       vn
-//                   }
-//                   filename
-//                   imageType
-//                   dimension {
-//                       width
-//                       height
-//                   }
-//                   trimmed {
-//                       filename
-//                       width
-//                       height
-//                   }
-//               }
-//               role
-//               mark {
-//                   id
-//                   name
-//                   label {
-//                       ko
-//                       en
-//                       ja
-//                       vn
-//                   }
-//                   filename
-//                   imageType
-//                   dimension {
-//                       width
-//                       height
-//                   }
-//                   trimmed {
-//                       filename
-//                       width
-//                       height
-//                   }
-//               }
-//               studentTerm
-//               status {
-//                   project
-//                   projectAll
-//                   study
-//                   studyAll
-//                   community {
-//                       qna
-//                       tips
-//                       free
-//                   }
-//                   following
-//                   follower
-//                   bookmark {
-//                       project
-//                       study
-//                       discuss
-//                   }
-//                   userStatus
-//               }
-//               representativeContestPrizes {
-//                   id
-//                   contest {
-//                       name
-//                       url
-//                       enddate
-//                   }
-//                   badgeText
-//                   prizeName
-//                   prizeImageData {
-//                       path
-//                   }
-//                   target
-//                   targetSubject
-//                   targetType
-//                   created
-//                   category
-//               }
-//           }
-//       }
+      // query FIND_USERSTATUS_BY_USERNAME($id: String) {
+      //     userstatus(id: $id) {
+      //         id
+      //         nickname
+      //         username
+      //         description
+      //         shortUrl
+      //         created
+      //         profileImage {
+      //             id
+      //             name
+      //             label {
+      //                 ko
+      //                 en
+      //                 ja
+      //                 vn
+      //             }
+      //             filename
+      //             imageType
+      //             dimension {
+      //                 width
+      //                 height
+      //             }
+      //             trimmed {
+      //                 filename
+      //                 width
+      //                 height
+      //             }
+      //         }
+      //         coverImage {
+      //             id
+      //             name
+      //             label {
+      //                 ko
+      //                 en
+      //                 ja
+      //                 vn
+      //             }
+      //             filename
+      //             imageType
+      //             dimension {
+      //                 width
+      //                 height
+      //             }
+      //             trimmed {
+      //                 filename
+      //                 width
+      //                 height
+      //             }
+      //         }
+      //         role
+      //         mark {
+      //             id
+      //             name
+      //             label {
+      //                 ko
+      //                 en
+      //                 ja
+      //                 vn
+      //             }
+      //             filename
+      //             imageType
+      //             dimension {
+      //                 width
+      //                 height
+      //             }
+      //             trimmed {
+      //                 filename
+      //                 width
+      //                 height
+      //             }
+      //         }
+      //         studentTerm
+      //         status {
+      //             project
+      //             projectAll
+      //             study
+      //             studyAll
+      //             community {
+      //                 qna
+      //                 tips
+      //                 free
+      //             }
+      //             following
+      //             follower
+      //             bookmark {
+      //                 project
+      //                 study
+      //                 discuss
+      //             }
+      //             userStatus
+      //         }
+      //         representativeContestPrizes {
+      //             id
+      //             contest {
+      //                 name
+      //                 url
+      //                 enddate
+      //             }
+      //             badgeText
+      //             prizeName
+      //             prizeImageData {
+      //                 path
+      //             }
+      //             target
+      //             targetSubject
+      //             targetType
+      //             created
+      //             category
+      //         }
+      //     }
+      // }
 //     `;
 
 //   try {
@@ -680,13 +680,118 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         query: `
-        query SELECT_PROJECT($id: ID! $groupId: ID) {
-            project(id: $id, groupId: $groupId) {
-                id
-                name
-                # ... 이하 원본 그대로
-            }
-        }`,
+        query FIND_USERSTATUS_BY_USERNAME($id: String) {
+          userstatus(id: $id) {
+              id
+              nickname
+              username
+              description
+              shortUrl
+              created
+              profileImage {
+                  id
+                  name
+                  label {
+                      ko
+                      en
+                      ja
+                      vn
+                  }
+                  filename
+                  imageType
+                  dimension {
+                      width
+                      height
+                  }
+                  trimmed {
+                      filename
+                      width
+                      height
+                  }
+              }
+              coverImage {
+                  id
+                  name
+                  label {
+                      ko
+                      en
+                      ja
+                      vn
+                  }
+                  filename
+                  imageType
+                  dimension {
+                      width
+                      height
+                  }
+                  trimmed {
+                      filename
+                      width
+                      height
+                  }
+              }
+              role
+              mark {
+                  id
+                  name
+                  label {
+                      ko
+                      en
+                      ja
+                      vn
+                  }
+                  filename
+                  imageType
+                  dimension {
+                      width
+                      height
+                  }
+                  trimmed {
+                      filename
+                      width
+                      height
+                  }
+              }
+              studentTerm
+              status {
+                  project
+                  projectAll
+                  study
+                  studyAll
+                  community {
+                      qna
+                      tips
+                      free
+                  }
+                  following
+                  follower
+                  bookmark {
+                      project
+                      study
+                      discuss
+                  }
+                  userStatus
+              }
+              representativeContestPrizes {
+                  id
+                  contest {
+                      name
+                      url
+                      enddate
+                  }
+                  badgeText
+                  prizeName
+                  prizeImageData {
+                      path
+                  }
+                  target
+                  targetSubject
+                  targetType
+                  created
+                  category
+              }
+          }
+      }`,
         variables: { id }
       }),
     });
