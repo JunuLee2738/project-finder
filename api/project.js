@@ -651,7 +651,7 @@ export default async function handler(req, res) {
   let csrf = "";
   const proxy = "https://cors-anywhere.herokuapp.com/";
   const targetUrl = "https://playentry.org/graphql/SELECT_PROJECT";
-
+  let data;
   // Googlebot UA
   const UA =
     "Mozilla/5.0 (Linux; Android 12; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
@@ -796,7 +796,7 @@ export default async function handler(req, res) {
       }),
     });
 
-    const data = await response.json();
+    data = await response.json();
 
     if (data.errors) {
       console.log(data.errors);
