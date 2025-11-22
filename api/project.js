@@ -800,7 +800,7 @@ export default async function handler(req, res) {
 
     if (data.errors) {
       console.log(data.errors);
-      res.status(400).json({ error: data.errors });
+      res.status(400).json({ error: data.errors, response: data });
     } else {
       res.status(200).json(data);
     }
