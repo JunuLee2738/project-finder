@@ -646,7 +646,8 @@
 //   }
 // }
 export default async function handler(req, res) {
-  const { id } = req.query;
+  // const { id } = req.query;
+  const { id, csrfToken = "" } = req.query;
 
   const proxy = "https://cors-anywhere.herokuapp.com/";
   const targetUrl = "https://playentry.org/graphql/SELECT_PROJECT";
